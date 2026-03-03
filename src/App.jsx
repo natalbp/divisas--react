@@ -6,6 +6,7 @@ const [divisas, setDivisas] = useState([])
 const [seleccion, setSeleccion] = useState("")
 const[divisaDefinitiva, setDivisaDefinitiva]= useState(null)
 const [valorInput, setValorInput] = useState(null)
+const [resultado, setResultado] = useState("No hay resultado")
 
   useEffect ( () => {
    consultar()
@@ -33,7 +34,14 @@ const buscarDivisa= (idDivisa) => {
 }
 
 const cambioInput = (nuevoValor) => {
+  setValorInput(nuevoValor)
   
+  
+}
+
+const convertir = () => {
+   let operacion= valorInput / divisaDefinitiva.ultimoCierre
+    setResultado(operacion)
 }
 
   return (
@@ -53,9 +61,9 @@ const cambioInput = (nuevoValor) => {
             }
         </select>
 
-        {/*<button>Convertir</button>*/}
+        <button onClick={convertir}>Convertir</button>
         <p id="resultado">
-           {valorInput / divisaDefinitiva?.ultimoCierre}
+           { resultado }
         </p>
     </div>
   )
